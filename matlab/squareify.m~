@@ -1,0 +1,27 @@
+% The following file is used for raw images that are very tall. It will pad
+% the image on the left and right with background pixels.
+
+clear all
+close all
+clc
+
+folder = '/home/acruz/Xyllella-Fastidiosa-Dataset/raw/olea-europea/control';
+
+cd( folder );
+
+files = dir( '*.jpg' );
+
+for i=length(files)
+    im = imread( [ folder, '/', files(i).name ] );
+    %% Attempt to segment the image mask
+    imGray = rgb2gray( im );    % Grayscale
+    imEq = imadjust( imGray );    % Adjust tones
+    imBW = ~imbinarize( imEq, graythresh( imEq ) );
+    imDilated = imclose( imBW, strel('square',3) );
+    imVertProfile = any( imDilated, [], 2 );
+    % Get original coords
+    
+    imNewSize = padarray( im, ...
+        [0 fix((size(im,1)-size(im,2))/2)], 255, ...
+        'both' );
+end
