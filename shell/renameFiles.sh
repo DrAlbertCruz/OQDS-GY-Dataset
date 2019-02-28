@@ -5,11 +5,8 @@
 filePath=~/Documents/xfast-dataset/raw/olea-europea/control/;
 
 for filename in ${filePath}*.jpg; do
-	echo ${filename};
 	md5=`md5sum ${filename} | awk '{ print $1 }'`;
 	newFilename=${filePath}${md5}'.jpg';
-	echo "cp $filename $newFilename";
-    #for ((i=0; i<=3; i++)); do
-    #    ./MyProgram.exe "$filename" "Logs/$(basename "$filename" .txt)_Log$i.txt"
-    #done
+	cp $filename $newFilename;
+	rm -f $filename;
 done
