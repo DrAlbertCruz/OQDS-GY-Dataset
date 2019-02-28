@@ -5,8 +5,8 @@ clear all
 close all
 clc
 
-folder = '/home/acruz/Xyllella-Fastidiosa-Dataset/raw/olea-europea/control/';
-saveFolder = '/home/acruz/Xyllella-Fastidiosa-Dataset/segmented/olea-europea/control/';
+folder = '/home/acruz/Xyllella-Fastidiosa-Dataset/raw/olea-europea/non-leaf-scorch/';
+saveFolder = '/home/acruz/Xyllella-Fastidiosa-Dataset/segmented/olea-europea/non-leaf-scorch/';
 
 cd( folder );
 
