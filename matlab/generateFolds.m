@@ -9,7 +9,7 @@ global segmentedPath
 segmentedPath = 'C:\data\Xyllella-Fastidiosa-Dataset\segmented';
 foldsPath = 'C:\data\Xyllella-Fastidiosa-Dataset\folds';
 NUM_FOLDS = 3;
-NUM_SAMPLES = 100;
+NUM_SAMPLES = 33*10;
 
 %% Generate list of file names
 % Pass a cell containing the list of subfolders to aggregate into a single
