@@ -9,7 +9,8 @@ global segmentedPath
 segmentedPath = 'C:\data\Xyllella-Fastidiosa-Dataset\segmented';
 foldsPath = 'C:\data\Xyllella-Fastidiosa-Dataset\folds';
 NUM_FOLDS = 3;
-NUM_SAMPLES = 33*10;
+NUM_SAMPLES = 33*20;
+N = 299;
 
 %% Generate list of file names
 % Pass a cell containing the list of subfolders to aggregate into a single
@@ -51,14 +52,16 @@ for fold = 1:NUM_FOLDS
             imageMeta = data(i).files(drawn);
             % Load the image
             im = imread( fullfile( imageMeta.folder, imageMeta.name ) );
+            % Resize the image
+            im = imresize( im, [N N] );
             % Randomly flip with a 50/50 chance
             if rand > 0.5
                 im = fliplr(im);
             end
             % Randomly rotate the image [-30,30] degrees
-            im = imrotate( im, rand()*60 - 30, 'bicubic', 'crop' );
+            im = imrotate( im, rand()*180 - 90, 'bicubic', 'crop' );
             % Randomly translate the image by 15%
-            im = imtranslate( im, [ rand()*26-13, rand()*26-13 ], ...
+            im = imtranslate( im, [ rand()*120-60, rand()*120-60 ], ...
                 'cubic' );
             % Determine the folder name where this thing goes
             thisFolder = fullfile( foldsPath, num2str(fold), cell2mat( labels( i ) ) );
